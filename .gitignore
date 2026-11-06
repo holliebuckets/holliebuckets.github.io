@@ -1,0 +1,33 @@
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor & IDE Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Local Caches & Dependencies
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+node_modules/
+.cache/
+
+# Local Logs & Build Artifacts
+*.log
+*.tmp
+*.bak
+test*
+*test*
+chrome_temp/

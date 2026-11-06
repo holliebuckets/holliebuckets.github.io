@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hollie Buckets — Portfolio</title>
+<meta name="description" content="Hollie Buckets is an interactive designer at Apple who builds and studies prototypes for wearables, spatial audio, and AI.">
+<style>
+  :root {
+    --bg: #0c0c0b;
+    --panel: #151513;
+    --panel-2: #1d1c19;
+    --line: #2c2b27;
+    --ink: #efeadf;
+    --muted: #a39d90;
+    --dim: #716c61;
+    --paper: #c4bba8;      /* resume khaki */
+    --paper-ink: #151513;
+    --green: #30d158; --amber: #ffb340; --violet: #bf5af2; --sky: #64b5ff;
+    --display: "HelveticaNeue-CondensedBlack", "Helvetica Neue Condensed Black", "Arial Narrow Bold", Impact, "Haettenschweiler", sans-serif;
+    --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .disp { font-family: var(--display); text-transform: uppercase; font-weight: 900; letter-spacing: -.01em; line-height: .88; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 20; background: rgba(12,12,11,.82); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; gap: 32px; height: 60px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  nav .mark { font-family: var(--display); font-size: 22px; letter-spacing: 0; margin-right: auto; text-decoration: none; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+  nav a.cta { color: var(--paper-ink); background: var(--paper); padding: 8px 16px; border-radius: 999px; font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 72px 0 96px; border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: end; }
+  .hero-top { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .pill { display: inline-block; border: 1px solid var(--paper); color: var(--paper); border-radius: 999px; padding: 4px 18px; font-size: 14px; letter-spacing: .04em; }
+  .pill.solid { background: var(--paper); color: var(--paper-ink); font-weight: 600; }
+  .hero h1 { font-size: clamp(120px, 17.5vw, 270px); color: var(--ink); margin-left: -6px; }
+  .hero h1 span { display: block; }
+  .hero h1 span + span { color: var(--paper); }
+  .hero-role { font-size: clamp(18px, 2vw, 26px); letter-spacing: .02em; text-transform: uppercase; margin-top: 36px; font-weight: 500; }
+  .hero-role i { font-style: normal; color: var(--paper); padding: 0 .35em; }
+  .statement { font-size: 22px; line-height: 1.5; color: var(--muted); max-width: 640px; margin-top: 28px; }
+  .statement b { color: var(--ink); font-weight: 500; }
+  .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+  .skills .pill { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 8px 22px; border-color: var(--line); color: var(--ink); }
+  .skills .pill.solid { border-color: var(--paper); }
+  .portrait { position: relative; }
+  .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) contrast(1.04); border: 1px solid var(--line); }
+  .portrait figcaption { position: absolute; left: 14px; bottom: 14px; background: var(--paper); color: var(--paper-ink); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; font-weight: 600; }
+  .facts { display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap; }
+  .fact .n { font-family: var(--display); font-size: 64px; line-height: 1; text-transform: uppercase; }
+  .fact .l { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+  /* Sections */
+  section.block { padding: 110px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 56px; flex-wrap: wrap; }
+  .sec-head h2 { font-size: clamp(64px, 9vw, 128px); }
+  .sec-head p { max-width: 460px; color: var(--muted); font-size: 18px; }
+  .kicker { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--paper); margin-bottom: 16px; font-weight: 600; }
+
+  /* Program */
+  .resp { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); font-weight: 600; margin-bottom: 12px; }
+  .prog { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .prog .card h4 { font-size: 36px; margin-bottom: 14px; }
+  .prog .card p { font-size: 15px; }
+  .prog .card .lk { color: var(--dim); }
+  .prog .card .src { display: block; margin-top: 12px; font-size: 12px; color: var(--dim); letter-spacing: .02em; }
+  .traits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; border-top: 1px solid var(--line); }
+  .trait { padding: 26px 28px 8px 0; }
+  .trait h5 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); margin-bottom: 10px; }
+  .trait p { font-size: 14.5px; color: var(--muted); }
+  @media (max-width: 980px) { .prog { grid-template-columns: 1fr; } .traits { grid-template-columns: 1fr 1fr; } }
+
+  /* Roles */
+  .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
+  .role { padding: 40px 36px 44px; border-right: 1px solid var(--line); }
+  .role:last-child { border-right: 0; }
+  .role .r-n { font-size: 12px; letter-spacing: .14em; color: var(--dim); }
+  .role h3 { font-size: 64px; margin: 18px 0 18px; color: var(--paper); }
+  .role p { color: var(--muted); font-size: 16px; }
+  .role .r-links { margin-top: 20px; font-size: 13px; letter-spacing: .04em; color: var(--dim); }
+  .role .r-links a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 4px; }
+
+  /* Project grid */
+  .grid12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .w7 { grid-column: span 7; } .w5 { grid-column: span 5; } .w4 { grid-column: span 4; }
+  .tile { min-height: 360px; border-radius: 6px; padding: 26px 28px; display: flex; flex-direction: column; text-decoration: none; position: relative; overflow: hidden; transition: transform .35s ease, border-color .35s ease; border: 1px solid var(--line); }
+  .tile:hover { transform: translateY(-4px); }
+  .tile .t-top { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .14em; opacity: .7; }
+  .tile .t-title { font-family: var(--display); text-transform: uppercase; font-size: clamp(44px, 5vw, 72px); line-height: .9; margin-top: auto; padding-top: 40px; }
+  .tile .t-line { margin-top: 14px; font-size: 15px; line-height: 1.45; max-width: 480px; opacity: .78; }
+  .tile .t-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+  .tile .t-arrow { font-size: 20px; opacity: .6; }
+  .tile.paper { background: var(--paper); color: var(--paper-ink); border-color: var(--paper); }
+  .tile.dark { background: var(--panel-2); }
+  .tile.line { background: transparent; }
+  .tile.line:hover, .tile.dark:hover { border-color: var(--paper); }
+
+  .badge { display: inline-block; padding: 3px 11px; border-radius: 999px; border: 1px solid currentColor; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+  .badge.device { color: var(--green); } .badge.live { color: var(--sky); } .badge.beta { color: var(--violet); } .badge.sim { color: var(--amber); }
+  .tile.paper .badge.live { color: #1d5fa8; } .tile.paper .badge.device { color: #1a7a35; } .tile.paper .badge.beta { color: #7a2aa6; }
+
+  /* Case studies */
+  .case { display: grid; grid-template-columns: 300px 1fr; gap: 64px; padding: 72px 0; border-top: 1px solid var(--line); }
+  .case:first-of-type { border-top: 0; }
+  .case-meta { position: sticky; top: 92px; align-self: start; font-size: 14px; }
+  .m-n { font-family: var(--display); font-size: 96px; line-height: .9; color: var(--paper); margin-bottom: 22px; }
+  .m-row { border-top: 1px solid var(--line); padding: 12px 0; color: var(--ink); }
+  .m-row > span { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .m-row a { text-underline-offset: 3px; color: var(--sky); }
+  .m-note { font-size: 12px; color: var(--dim); border-top: 1px solid var(--line); padding-top: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .chips i { font-style: normal; font-size: 12px; color: var(--muted); background: var(--panel-2); border-radius: 4px; padding: 3px 9px; }
+  .case-body h3 { font-size: clamp(56px, 7vw, 104px); margin-bottom: 26px; }
+  .goal { border-left: 4px solid var(--paper); padding: 4px 0 4px 26px; margin-bottom: 30px; max-width: 800px; }
+  .goal span { display: block; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--paper); font-weight: 600; margin-bottom: 8px; }
+  .goal p { font-size: 28px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
+  .case-sum { font-size: 19px !important; color: var(--muted) !important; }
+  .case-body h3 { margin-bottom: 30px; }
+  .case-sum { font-size: 24px; line-height: 1.45; color: #d9d4c8; max-width: 760px; margin-bottom: 40px; letter-spacing: -.005em; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .two h5 { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--paper); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  ul.dash { list-style: none; }
+  ul.dash li { position: relative; padding-left: 26px; margin-bottom: 12px; color: #cfcabe; font-size: 15.5px; }
+  ul.dash li::before { content: "\2014"; position: absolute; left: 0; color: var(--dim); }
+
+  /* Lineage */
+  .lineage { display: flex; overflow-x: auto; margin: 8px 0 56px; padding-bottom: 8px; }
+  .node { flex: 1 0 170px; border-top: 2px solid var(--line); padding: 20px 16px 0 0; position: relative; }
+  .node::before { content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); }
+  .node .y { font-size: 12px; color: var(--dim); letter-spacing: .08em; }
+  .node .nm { font-family: var(--display); text-transform: uppercase; font-size: 30px; line-height: 1; margin: 8px 0; }
+  .node .d { font-size: 13.5px; color: var(--muted); }
+  .note { margin-top: 36px; padding: 20px 24px; border-left: 3px solid var(--amber); background: var(--panel); color: var(--muted); font-size: 15px; max-width: 820px; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 28px; }
+  .card .y { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+  .card h4 { font-family: var(--display); text-transform: uppercase; font-size: 32px; line-height: .95; margin-bottom: 12px; font-weight: 900; }
+  .card p { font-size: 14.5px; color: var(--muted); }
+  .card .lk { margin-top: 14px; font-size: 13px; }
+  .card .lk a { color: var(--sky); text-underline-offset: 3px; }
+  .sub-head { font-family: var(--display); text-transform: uppercase; font-size: 44px; margin: 72px 0 24px; line-height: 1; }
+
+  /* Experience */
+  .xp { display: grid; grid-template-columns: 220px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid var(--line); }
+  .xp:first-of-type { border-top: 0; }
+  .xp .when { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--paper); font-weight: 600; }
+  .xp .co { font-size: 12px; letter-spacing: .12em; color: var(--dim); text-transform: uppercase; margin-top: 6px; }
+  .xp h3 { font-family: var(--display); text-transform: uppercase; font-size: 46px; line-height: .95; margin-bottom: 18px; font-weight: 900; }
+  .xp p { color: #cfcabe; font-size: 16.5px; max-width: 820px; }
+  .xp p + p { margin-top: 12px; }
+  .lists { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 40px; }
+  .lists h5 { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--paper); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .lists li { list-style: none; padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: #d9d4c8; font-size: 16px; }
+  .lists li span { color: var(--dim); font-variant-numeric: tabular-nums; }
+  .int { display: flex; flex-wrap: wrap; gap: 10px; }
+  .int .pill { border-color: var(--line); color: var(--ink); font-size: 14px; padding: 8px 20px; }
+
+  /* Contact */
+  .contact { padding: 120px 0 90px; }
+  .contact h2 { font-size: clamp(90px, 15vw, 230px); }
+  .contact h2 span { color: var(--paper); }
+  .links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 48px; }
+  .links a { text-decoration: none; border: 1px solid var(--line); padding: 14px 26px; border-radius: 999px; font-size: 15px; letter-spacing: .04em; }
+  .links a:hover { border-color: var(--paper); }
+  .links a.primary { background: var(--paper); color: var(--paper-ink); border-color: var(--paper); font-weight: 600; }
+  .signoff { font-family: "New York", "Iowan Old Style", Georgia, serif; font-style: italic; font-size: 24px; color: var(--muted); margin-top: 40px; }
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; color: var(--dim); font-size: 12px; letter-spacing: .06em; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .tile { transition: none; } }
+
+  @media (max-width: 980px) {
+    .wrap { padding: 0 24px; }
+    nav .wrap { gap: 18px; overflow-x: auto; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .portrait { max-width: 420px; }
+    .roles { grid-template-columns: 1fr; } .role { border-right: 0; border-bottom: 1px solid var(--line); } .role:last-child { border-bottom: 0; }
+    .w7, .w5, .w4 { grid-column: span 12; }
+    .tile { min-height: 300px; }
+    .case, .xp { grid-template-columns: 1fr; gap: 28px; }
+    .case-meta { position: static; }
+    .two, .lists { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media print {
+    nav { display: none; } .reveal { opacity: 1; transform: none; }
+    .case-meta { position: static; } .tile:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">Hollie Buckets</a>
+    <a href="#work">Work</a>
+    <a href="#program">Program</a>
+    <a href="#approach">Approach</a>
+    <a href="#lineage">Lineage</a>
+    <a href="#incubation">Incubation</a>
+    <a href="#research">Research</a>
+    <a href="#experience">Experience</a>
+    <a class="cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 class="disp"><span>Hollie</span><span>Buckets</span></h1>
+        <div class="hero-role">Designer<i>/</i>Prototyper<i>/</i>Model Behaviourist</div>
+        <p class="statement"><b>I'm an interactive designer, and I've been at Apple since 2019.</b> I run complicated prototype projects, and I like being the person who connects design, engineering, research, and incubation teams. I come from interactive sciences and systems management, so I start with research and borrow ideas from how living things solve problems.</p>
+        <div class="skills">
+          <span class="pill solid">Swift</span><span class="pill">C#</span><span class="pill solid">Unity</span><span class="pill">Git</span><span class="pill">Jira / Trello</span><span class="pill">Adobe Creative</span><span class="pill solid">LRG Models</span><span class="pill">R</span>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="assets/hollie.jpg" alt="Portrait of Hollie Buckets" width="900" height="1156">
+        <figcaption>Hollie Buckets</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="program">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Program management</div><h2 class="disp">How I run<br>a program</h2></div><p>Complicated prototype work only gets finished when someone keeps the tracker current, the weekly rhythm going, and the handoff clean. Here is what that has looked like for me, and where you can see it.</p></div>
+    <div class="prog">
+      <div class="card"><div class="resp">Tracker, resourcing, priorities</div><h4>Keep the tracker honest</h4><p>I've set up tracking for progress, resources, and milestones on complicated prototype projects. The on-wrist companion project has a comprehensive roadmap, written standards, and handoff notes, so someone starting fresh can pick it up cold. The wayfinding migration ran from a structured multi-phase plan with a named group of peer reviewers.</p><span class="src">Resume &middot; <a href="#case-04">On-Wrist Companion</a> &middot; <a href="#lineage">Wayfinding Lineage</a></span></div>
+      <div class="card"><div class="resp">Roadblocks and cross-functional partners</div><h4>Clear the roadblock</h4><p>I've been the go-between for design, engineering, and incubation teams. I kept a standing group of partners in cognition, scene understanding, HCI, audio design, and interactive architecture, and I got partner teams updated feasibility guidance in under 24 hours. At Unity I carried outside developers' needs to the internal teams and brought engine changes back to the developers.</p><span class="src">Resume &middot; <a href="#incubation">incubation work</a> &middot; <a href="#experience">experience</a></span></div>
+      <div class="card"><div class="resp">Weekly rhythm</div><h4>Run the cadence</h4><p>The prototype lab works on a weekly rhythm. A different reviewer reports each weekday, a daily check confirms the scheduled work really ran, and anything missed gets caught up in dependency order.</p><span class="src"><a href="#research">advisory-board</a></span></div>
+      <div class="card"><div class="resp">Prototype delivery for user studies</div><h4>Deliver for the study</h4><p>The spatial audio study used a Wizard of Oz methodology with novice and expert cohorts, leading to a branching interactive prototype with audio. I document prototypes thoroughly so teammates can replicate and run them (such as the homography vision masterclass), and cross-functional prototype demonstrations were scheduled across 160+ live review sessions.</p><span class="src"><a href="#case-01">Audio Guidance Study</a> &middot; <a href="#case-05">Homography Vision</a></span></div>
+      <div class="card"><div class="resp">Partnering with researchers</div><h4>Stay aligned with research</h4><p>I tie study findings back to the literature. The Visual Intelligence Evaluation Framework gives teams shared rubrics, and an eleven-seat advisory board reviews research before anything is published.</p><span class="src"><a href="#case-02">Visual Intelligence</a> &middot; <a href="#research">research</a></span></div>
+      <div class="card"><div class="resp">Improving project tools</div><h4>Improve the process</h4><p>I built the Multi-Agent Incubation Pipeline, which features formal stages, human sign-off gates, and immutable decision logging. Stage-gated execution plans keep engineering priorities visible.</p><span class="src"><a href="#case-03">Incubation Pipeline</a></span></div>
+    </div>
+    <div class="traits">
+      <div class="trait"><h5>Written communication</h5><p>Design documents, decision logs, standards, and field guides, so the plan outlasts the meeting.</p></div>
+      <div class="trait"><h5>Accountability</h5><p>My review boards exist to push back, including on whether a commit says more than the diff.</p></div>
+      <div class="trait"><h5>Confidentiality</h5><p>I maintained strict confidentiality protocols for unannounced technologies and hardware platforms at Unity and Apple, treating intellectual property with deep stewardship.</p></div>
+      <div class="trait"><h5>Tailored communication</h5><p>I'll deliver the same research as a deck, a field guide, or a rubric, depending on who needs it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="approach">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Approach</div><h2 class="disp">Three ways<br>I work</h2></div><p>The title on my resume is really three jobs. Each one shows up in the work below.</p></div>
+    <div class="roles">
+      <div class="role"><div class="r-n">01</div><h3 class="disp">Designer</h3><p>I design for people first, and I borrow from biology a lot: I watch how a living thing solves a problem, then borrow the pattern. The on-wrist ambient companion is the clearest example, with an organic, biomimetic interaction model and an editorial constitution.</p><div class="r-links">See <a href="#case-04">On-Wrist Companion</a>, <a href="#case-01">Audio Guidance Study</a>, <a href="#case-06">Wearable Task Spec</a></div></div>
+      <div class="role"><div class="r-n">02</div><h3 class="disp">Prototyper</h3><p>I run complicated prototype projects with tracking for progress, resources, and milestones, and I work as the link between design, engineering, and incubation teams. I write each prototype up well enough that someone else can take it over.</p><div class="r-links">See <a href="#case-05">Homography Vision</a>, <a href="#case-03">Incubation Pipeline</a>, <a href="#lineage">Wayfinding lineage</a></div></div>
+      <div class="role"><div class="r-n">03</div><h3 class="disp">Model Behaviourist</h3><p>I built a way to study how AI models behave. I write prompts, sort the responses into patterns, and track the same attributes across model versions and adapter setups. That covers model drift, whether data augmentation helped, and the demographic effects I found in generated images.</p><div class="r-links">See <a href="#incubation">Generative Model Evaluation</a>, <a href="#case-07">Multimodal Eval Suite</a>, <a href="#research">Research</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="kicker">Selected work</div><h2 class="disp">Ten<br>projects</h2></div><p>I've put the research-facing programs first. Each tile opens a case study with the goal, what I did, how it was built, and where it stands now.</p></div>
+    <div class="grid12 reveal">
+<a class="tile paper w7" href="#case-01">
+      <span class="t-top"><span class="t-n">01</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Audio-Spatial Task Guidance</span>
+      <span class="t-line">Can a voice teach you to tie a tie? A study of where audio-only guidance holds up and where it falls apart.</span>
+      <span class="t-foot"><span class="badge live">Study complete</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile dark w5" href="#case-02">
+      <span class="t-top"><span class="t-n">02</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Visual Intelligence Evaluation Framework</span>
+      <span class="t-line">What does good look like for wearable visual intelligence? One set of rubrics so every use case gets judged the same way.</span>
+      <span class="t-foot"><span class="badge live">Framework Complete</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile line w4" href="#case-03">
+      <span class="t-top"><span class="t-n">03</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Multi-Agent Incubation Pipeline</span>
+      <span class="t-line">Can a concept get vetted, built, and written up without a person relaying between reviewers at every step?</span>
+      <span class="t-foot"><span class="badge beta">v0.1.1 beta</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile dark w4" href="#case-04">
+      <span class="t-top"><span class="t-n">04</span><span class="t-yr">2026</span></span>
+      <span class="t-title">On-Wrist Ambient Companion</span>
+      <span class="t-line">What would a calm AI on your wrist look like? One that mostly stays out of the way.</span>
+      <span class="t-foot"><span class="badge device">Runs on device</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile paper w4" href="#case-05">
+      <span class="t-top"><span class="t-n">05</span><span class="t-yr">2026</span></span>
+      <span class="t-title">On-Device Homography Solver</span>
+      <span class="t-line">Where is that screen in the photo? Finding a known image in a scene with public Vision frameworks only.</span>
+      <span class="t-foot"><span class="badge live">Built and documented</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile line w5" href="#case-06">
+      <span class="t-top"><span class="t-n">06</span><span class="t-yr">2025</span></span>
+      <span class="t-title">Wearable Task Guidance Spec</span>
+      <span class="t-line">How should a wearable coach you through a physical task, hands-free? I specified three scenarios in full.</span>
+      <span class="t-foot"><span class="badge live">Specification</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile paper w7" href="#case-07">
+      <span class="t-top"><span class="t-n">07</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Multimodal Model Eval Suite</span>
+      <span class="t-line">One command takes a recording to a published, comparable report, so model evaluation is repeatable.</span>
+      <span class="t-foot"><span class="badge live">Working tool</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile dark w4" href="#case-08">
+      <span class="t-top"><span class="t-n">08</span><span class="t-yr">2025</span></span>
+      <span class="t-title">Conversational Audio Companion</span>
+      <span class="t-line">What would an all-day voice-first audio companion feel like? I built a conversational prototype to find out.</span>
+      <span class="t-foot"><span class="badge live">Prototype</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile line w4" href="#case-09">
+      <span class="t-top"><span class="t-n">09</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Collaborative Spatial Workbench</span>
+      <span class="t-line">Where do ideas go after you've read about them? A shared workbench for turning research into sketches and decisions.</span>
+      <span class="t-foot"><span class="badge live">Live collaboration</span><span class="t-arrow">&darr;</span></span>
+    </a>
+<a class="tile dark w4" href="#case-10">
+      <span class="t-top"><span class="t-n">10</span><span class="t-yr">2026</span></span>
+      <span class="t-title">Multimodal Generative Craft App</span>
+      <span class="t-line">Give it an image, a few prompts, and an age group, and get a craft project you can make today.</span>
+      <span class="t-foot"><span class="badge live">Demo build</span><span class="t-arrow">&darr;</span></span>
+    </a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="kicker">Case studies</div><h2 class="disp">The projects,<br>one by one</h2></div></div>
+<article class="case reveal" id="case-01">
+      <aside class="case-meta">
+        <div class="m-n">01</div>
+        <div class="m-row"><span>Year</span>Apr – May 2026</div>
+        <div class="m-row"><span>Platform</span>Wizard of Oz study</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Study complete</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Wizard of Oz</i><i>Cohort design</i><i>Audio UX</i><i>Trust calibration</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Research Findings &amp; Interactive Build</span></div>
+        
+      </aside>
+      <div class="case-body">
+        <h3>Audio-Spatial Task Guidance</h3>
+        <div class="goal"><span>The goal</span><p>I wanted to know whether voice alone can teach a hands-on task, and what has to change before people trust it, before anyone builds the real system.</p></div>
+        <p class="case-sum">This study simulates hands-free audio and wearable camera guidance that walks someone through tying a tie. A researcher plays the system from behind the curtain (the Wizard of Oz method), which let us test with novice and expert groups without building anything first. Three findings came out of it, listed below, and all three point to trust calibration as the hard part. Build 3.1, a branching prototype with audio, picks the work up from there.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Finding I: people couldn't tell what state the system was in, so they leaned on the proctor.</li><li>Finding II: experts got in their own way. Knowing the task well made the guidance harder to follow.</li><li>Finding III: audio alone is ambiguous about how things sit in space.</li><li>Each finding is tied back to the literature on grounding, earcons, expertise, and trust in automation.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>Build 3.1, a branching HTML prototype with audio, lives in its own repository.</li><li>The findings deck is a standalone interactive presentation authored for research evaluation.</li><li>The synthesis names trust calibration as the problem to design against.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-02">
+      <aside class="case-meta">
+        <div class="m-n">02</div>
+        <div class="m-row"><span>Year</span>Oct 2026</div>
+        <div class="m-row"><span>Platform</span>Wearable Visual Intelligence</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Framework Complete</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Evaluation design</i><i>Rubrics</i><i>Visual Intelligence</i><i>Static site</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Standardized Evaluation Rubric</span></div>
+        
+      </aside>
+      <div class="case-body">
+        <h3>Visual Intelligence Evaluation Framework</h3>
+        <div class="goal"><span>The goal</span><p>Give teams one consistent way to judge multi-modal visual intelligence experiences, so we can compare use cases and decide from shared criteria instead of first impressions.</p></div>
+        <p class="case-sum">A 31-slide deck with a rubric for each use case and a rubric handbook, written for wearable visual intelligence. It has a presenter script built in, so the same material works for a live talk, for reading alone, or as a reference to keep open while scoring.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>The framework, the per-use-case rubrics, and an appendix handbook live in one deck you can navigate.</li><li>A presenter script is built in. Press a key to show it.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>No build step. It's plain HTML, CSS, and JS, and the deploy script refuses to ship uncommitted changes.</li><li>Hosted as an interactive standalone artifact for evaluation teams.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-03">
+      <aside class="case-meta">
+        <div class="m-n">03</div>
+        <div class="m-row"><span>Year</span>Jul – Oct 2026</div>
+        <div class="m-row"><span>Platform</span>Multi-agent pipeline</div>
+        <div class="m-row"><span>Status</span><b class="badge beta">v0.1.1 beta</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Multi-agent pipeline</i><i>Claude Code skills</i><i>Review gates</i><i>Decision logs</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Architecture Specification &amp; Case Study</span></div>
+        <div class="m-note">End-to-End Incubation Run</div>
+      </aside>
+      <div class="case-body">
+        <h3>Multi-Agent Incubation Pipeline</h3>
+        <div class="goal"><span>The goal</span><p>Take an idea to a vetted, built, and documented prototype, and ask for a person only where judgment matters, at four named gates.</p></div>
+        <p class="case-sum">Two AI review boards look at each concept in turn. One focuses on research integrity and the other on build quality, and they argue directly when they disagree. What comes out is a working prototype, a presentation, a concept field guide, and a decision log that records why each choice was made. It's in beta after one full run on a real example.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>I treat the process as something to design: stages, gates, and a decision log that shows why choices were made.</li><li>It produces a prototype, an HTML presentation, and a concept field guide.</li><li>It ships with two ready-made rosters you can fork for another domain.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>The Vetting Board and Build Board seats are dispatched as autonomous sub-agents with dedicated prompts.</li><li>If your environment can't dispatch reliably, there's a disclosed, spot-checked alternative mode.</li><li>It has run end to end once, on a single worked example. The release notes list what's proven and what's still open.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-04">
+      <aside class="case-meta">
+        <div class="m-n">04</div>
+        <div class="m-row"><span>Year</span>Jun – Sep 2026</div>
+        <div class="m-row"><span>Platform</span>watchOS · iOS</div>
+        <div class="m-row"><span>Status</span><b class="badge device">Runs on device</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>SwiftUI</i><i>watchOS</i><i>HealthKit</i><i>WatchConnectivity</i><i>Token Caching</i><i>Editorial design</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Technical Architecture Briefing</span></div>
+        <div class="m-note">watchOS &amp; iOS Architecture</div>
+      </aside>
+      <div class="case-body">
+        <h3>On-Wrist Ambient Companion</h3>
+        <div class="goal"><span>The goal</span><p>Explore what a calm, unobtrusive personal AI could be on the wrist. It collects the day through sensors and a single gesture, and speaks up only when there's a story worth telling.</p></div>
+        <p class="case-sum">This project isn't a journaling app or a tracker. I designed it as an ambient personal correspondent on the wrist. The watch gathers fragments, an AI engine decides whether there's a story in them, and the phone presents it to read and annotate. An editorial Constitution governs when the system speaks and what it won't say.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Ten dispatch types, each documented as a full UX walk-through from moment to reading.</li><li>An editorial Constitution of ten Articles governs how the app decides what to say.</li><li>A mycelium palette set in New York, Optima, and SF Mono, drawn from a world where plant intelligence won.</li><li>Anything that needs clinical or legal sign-off is designed but held back, and the docs say so.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>The watch captures HealthKit heart rate, CoreLocation points of interest, and CoreMotion context. Contextual gesture and on-screen triggers initiate capture sessions.</li><li>WCSession connects watch and phone, with an offline queue as a fallback.</li><li>Secure token authentication, with generative dispatches routed through a local foundation model proxy.</li><li>Automated workspace generation, written architectural standards, and handoff notes in the repository.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-05">
+      <aside class="case-meta">
+        <div class="m-n">05</div>
+        <div class="m-row"><span>Year</span>Aug 2026</div>
+        <div class="m-row"><span>Platform</span>iOS 18+ · Vision</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Built and documented</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Vision</i><i>CoreImage</i><i>Homography</i><i>simd</i><i>Teaching material</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Vision Curriculum &amp; Documentation</span></div>
+        <div class="m-note">Vision &amp; simd Framework</div>
+      </aside>
+      <div class="case-body">
+        <h3>On-Device Homography &amp; Perspective Rectification</h3>
+        <div class="goal"><span>The goal</span><p>Let a prototype know exactly where a known image sits in a camera view, using only public Vision and CoreImage APIs, so spatial experiences don't depend on ARKit.</p></div>
+        <p class="case-sum">Give the tool a reference (a phone screenshot, a poster, a painting) and a scene photo, and it returns the pixel region and the perspective transform that maps one onto the other. You can copy the result straight into code, and the project comes with a short course so other people can learn the technique.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Three views for inspecting a match: the scene with corner pins, the reference spec, and a dual view that shows the un-warped patch beside it.</li><li>A coordinate HUD copies the result as a Swift snippet in one tap.</li><li>A 9-slide masterclass deck, a syllabus, and speaker notes come with it for teaching.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>Four passes: text recognition, rectangle detection, a hue-histogram plus FeaturePrint ranking, then a DLT homography solve.</li><li>The result is a 3x3 simd_float3x3 that maps reference coordinates into the scene.</li><li>Aspect-fit calibration converts between Vision space and UIKit space, and CIPerspectiveCorrection does the rectification.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-06">
+      <aside class="case-meta">
+        <div class="m-n">06</div>
+        <div class="m-row"><span>Year</span>Nov 2025</div>
+        <div class="m-row"><span>Platform</span>Wearable AI</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Specification</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Design document</i><i>Use-case analysis</i><i>Sensor fusion</i><i>Privacy review</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Interaction Specification</span></div>
+        
+      </aside>
+      <div class="case-body">
+        <h3>Hands-Free Wearable Guidance Specification</h3>
+        <div class="goal"><span>The goal</span><p>Define what a hands-free wearable guide should do for physical tasks in the kitchen, the gym, and the workshop, and give teams a way to decide which use cases to build first.</p></div>
+        <p class="case-sum">I wrote the spec like a game design document. It follows one person through a full day and three scenarios in detail, then pulls out what they share: architecture, failure modes, privacy, and performance targets. A companion calculator sizes each use case by effort.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Three scenarios, moment by moment: poaching an egg, loading a barbell, and replacing a small sensor coin battery.</li><li>A user persona, a full-day timeline, emotional beats, and the moments where context switches.</li><li>Failure modes and recovery paths designed in from the start.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>System states, API calls, and sensor-activation patterns for each scenario.</li><li>Shared architecture, privacy and security considerations, and performance benchmarks.</li><li>An interactive calculator that sizes candidate use cases by effort.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-07">
+      <aside class="case-meta">
+        <div class="m-n">07</div>
+        <div class="m-row"><span>Year</span>May – Jun 2026</div>
+        <div class="m-row"><span>Platform</span>Model evaluation</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Working tool</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Python</i><i>Foundation Models</i><i>LLM-as-judge</i><i>Audio transcription</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Production Evaluation Pipeline</span></div>
+        
+      </aside>
+      <div class="case-body">
+        <h3>Multimodal Model Evaluation Pipeline</h3>
+        <div class="goal"><span>The goal</span><p>Make it quick and repeatable to test how a model listens to audio and responds to different prompts, so differences between runs and versions are visible instead of half-remembered.</p></div>
+        <p class="case-sum">It's an automated command-line evaluation tool communicating with foundation model inference services, plus an eval system that builds reports. Recordings go in, timestamped reports come out and publish on their own, and an LLM judge and stored prompt evaluations let you compare runs. It's the model-behaviour side of my work: watching how responses change across prompts and versions.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>One command turns a recording into a report page you can share.</li><li>Prompt evaluations are stored so runs can be compared.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>It takes audio or text prompts, has adjustable token limits, and runs one-shot or interactive.</li><li>The transcription scripts went through five iterations, and there's an LLM judge and backfill tooling.</li><li>Comprehensive evaluation suite with automated report publishing.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-08">
+      <aside class="case-meta">
+        <div class="m-n">08</div>
+        <div class="m-row"><span>Year</span>Sep – Nov 2025</div>
+        <div class="m-row"><span>Platform</span>iOS · Wearable Audio</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Prototype</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>Speech</i><i>SoundAnalysis</i><i>CoreMotion</i><i>Spatial audio</i><i>LLM integration</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Conversational Audio Prototype</span></div>
+        
+      </aside>
+      <div class="case-body">
+        <h3>Conversational Audio Companion</h3>
+        <div class="goal"><span>The goal</span><p>Explore whether a voice-first conversational assistant in wearable audio can sustain natural turn-taking, acoustic scene awareness, and spatial ergonomics.</p></div>
+        <p class="case-sum">This prototype explores turning wearable audio into an ambient conversational partner. It listens, answers in a natural voice, remembers the thread, and names the sounds around you. The concept notes also explore a related workplace idea, an assistant that helps colleagues connect.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Turn-taking is voice-first, leveraging calibrated pause-detection thresholds.</li><li>It keeps conversation history so replies build on what was said.</li><li>A companion concept explored a relationship-spread model for workplace interactions.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>Speech recognition with pause detection, foundation model integration for conversational turns, and neural text-to-speech for output.</li><li>SoundAnalysis classifies the environment live, and CoreMotion head tracking drives spatial audio.</li><li>The audio session recovers and reconnects, tuned for low-latency conversational voice-chat mode.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-09">
+      <aside class="case-meta">
+        <div class="m-n">09</div>
+        <div class="m-row"><span>Year</span>Sep – Oct 2026</div>
+        <div class="m-row"><span>Platform</span>Web</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Live collaboration</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>JavaScript</i><i>3D</i><i>Real-time collaboration</i><i>Automated CI</i><i>Zero-Trust Storage</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Spatial Workbench Architecture</span></div>
+        <div class="m-note">Hardened WebGL &amp; Sync</div>
+      </aside>
+      <div class="case-body">
+        <h3>Collaborative Spatial Canvas</h3>
+        <div class="goal"><span>The goal</span><p>Give a team a shared, interactive place to turn reading and research into sketched ideas, so concepts across cartography, spatial audio, data sovereignty, and inclusive AI can be explored together.</p></div>
+        <p class="case-sum">The spatial canvas is an interactive idea incubator. It started as a wireframe and became a working app with live collaboration, media, and editable 3D. A numbered set of specs covers architecture, workspace governance, and privacy boundaries, and a security review tightened up rendering and persistence.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>It's a workbench for sketching ideas, not writing documents: boards, nodes, and lenses over the same material.</li><li>Privacy boundaries are specified up front, including a personal Desk, a shared Vault, and rules for what can leave the browser.</li><li>Architecture blueprints, workspace governance, and a design style guide live as numbered specs next to the code.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>A frontend with live collaboration, dropped media, and editable 3D.</li><li>Pluggable storage, snapshot export and import, and modular deploy artifacts.</li><li>After a security review, rendering and persistence were hardened and every render site sanitizes its input.</li><li>Automated CI runs regression tests on every pull request, with automatic preview deployments.</li></ul></div>
+        </div>
+      </div>
+    </article>
+<article class="case reveal" id="case-10">
+      <aside class="case-meta">
+        <div class="m-n">10</div>
+        <div class="m-row"><span>Year</span>Aug – Oct 2026</div>
+        <div class="m-row"><span>Platform</span>iOS</div>
+        <div class="m-row"><span>Status</span><b class="badge live">Demo build</b></div>
+        <div class="m-row"><span>Stack</span><div class="chips"><i>SwiftUI</i><i>MVVM</i><i>XcodeGen</i><i>Foundation Models</i></div></div>
+        <div class="m-row"><span>Artifact</span><span>Native iOS Prototype Build</span></div>
+        <div class="m-note">SwiftUI &amp; XcodeGen</div>
+      </aside>
+      <div class="case-body">
+        <h3>Multimodal Generative Craft Companion</h3>
+        <div class="goal"><span>The goal</span><p>Explore how generative AI can turn an image, a few creative prompts, and an age group into a doable, timed craft project for anyone from preschool to adult.</p></div>
+        <p class="case-sum">This project is a native iOS application. You pick an input (camera, Files, paste, or drag and drop), an age group, and a few prompts, and a generative model returns a titled project with timed, step-by-step instructions. I built it for live demos, so it falls back gracefully when authentication lapses.</p>
+        <div class="two">
+          <div><h5>Approach</h5><ul class="dash"><li>Three simple inputs: a source image, an age group from Preschool to Adult, and a shuffled set of creative prompts.</li><li>The output is a titled project with timed steps, each short enough to follow in one sitting.</li><li>You can bring your own content by drag and drop, paste, camera, or the Files app.</li></ul></div>
+          <div><h5>Build</h5><ul class="dash"><li>A SwiftUI MVVM app generated with XcodeGen, with ad-hoc signing for quick installs on a device.</li><li>A developer menu lets me manage model gateway credentials directly on device.</li><li>If authentication expires mid-demo, the app falls back gracefully.</li></ul></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="block" id="lineage">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Wayfinding lineage</div><h2 class="disp">Six versions<br>of audio-first<br>wayfinding</h2></div><p>This is my longest-running thread: guiding a person by sound. Each version kept the idea and added more sensing around it.</p></div>
+    <div class="lineage">
+      <div class="node"><div class="y">2020&ndash;21</div><div class="nm">Gen 1</div><div class="d">Core spatial audio guidance and acoustic field simulation</div></div>
+      <div class="node"><div class="y">2021</div><div class="nm">Gen 2</div><div class="d">Relative heading estimation and dynamic audio orientation</div></div>
+      <div class="node"><div class="y">2021&ndash;22</div><div class="nm">Gen 3</div><div class="d">Multi-sensor navigation and structured test matrices</div></div>
+      <div class="node"><div class="y">2022</div><div class="nm">Gen 4</div><div class="d">Modular state-machine architecture and dynamic goal routing</div></div>
+      <div class="node"><div class="y">2022&ndash;23</div><div class="nm">Gen 5</div><div class="d">Headphone motion tracking, sound analysis, and contextual audio layering</div></div>
+      <div class="node"><div class="y">2026</div><div class="nm">Gen 6</div><div class="d">Swift 6 on-device foundation models with offline fallback</div></div>
+    </div>
+    <div class="case" style="padding:0;border:0;grid-template-columns:1fr;gap:0">
+      <div class="two">
+        <div><h5>Approach</h5><ul class="dash">
+          <li>Every version kept the same premise, guiding a person by sound, and widened the sensing around it.</li>
+          <li>Generation 5 stacked AR, location telemetry, headphone motion, speech recognition, sound analysis, and audio into one experience. The modern port adds vision-based hand pose.</li>
+          <li>In the latest architecture, an assistant voice speaks its replies back to you in real time.</li>
+        </ul></div>
+        <div><h5>Build</h5><ul class="dash">
+          <li>Generation 6 utilizes Swift 6 and public iOS APIs exclusively. The assistant sits behind a modular service boundary backed by on-device foundation models with offline fallback.</li>
+          <li>The spatial navigation state machine combines SwiftUI, ARKit, and SceneKit, validated across 120+ automated simulator regression tests.</li>
+          <li>Structured peer reviews evaluated rendering fidelity, test coverage, privacy isolation, and accessibility.</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="note">Where things stand: Modern ports build and pass simulator checks across all core navigation rules.</div>
+  </div>
+</section>
+
+<section class="block" id="incubation">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Advanced Incubation &amp; Prototyping</div><h2 class="disp">Earlier<br>incubation<br>work</h2></div><p>Selected from my 2025 portfolio of efforts. The charter behind it was to design, storyboard, and prototype, analyze feasibility, build partnerships across teams, and keep knowledge leadership.</p></div>
+    <div class="cards">
+      <div class="card"><div class="y">2023 &middot; Feasibility</div><h4>Multi-Modal Sensor Feasibility</h4><p>I modeled interaction latency, computational constraints, and spatial tracking feasibility across conceptual sensor topologies, establishing rapid cross-functional evaluation rubrics for early-stage interactive prototypes.</p></div>
+      <div class="card"><div class="y">Indoor wayfinding</div><h4>Concentric precision</h4><p>I defined indoor wayfinding requirements by scale: the building, then the room or exhibit, then the artifact, along with the sensors and data each level needs. I worked through airport and museum scenarios, and I separated wayfinding (orienting and traveling) from A-to-B navigation (following a path someone already knows).</p></div>
+      <div class="card"><div class="y">2024&ndash;25 &middot; Model evaluation</div><h4>Evaluating generative image models</h4><p>I studied how prompt structure, negative prompts, and image conditioning change what a model generates. A style prefix held up better than a suffix. Prompting alone couldn't control composition, but image conditioning could counter the model's habit of generating from the center. Negative prompts stopped working after about four terms. A character portfolio compared outputs across person, masculine, and feminine presentations.</p></div>
+      <div class="card"><div class="y">Model evaluation</div><h4>LLM rewrite vs rule-based trimming</h4><p>I compared an LLM rewrite against a rule-based dependency parser for editing prompts, and sketched UI options for each. Across twelve test cases the rule-based approach got six right and the LLM got one. The LLM also hallucinated when a noun was missing.</p></div>
+      <div class="card"><div class="y">2021 &middot; Human factors research</div><h4>Cognition, behaviour, and design</h4><p>A research series on how people move through and make choices in mapped and unmapped spaces. It starts from behavioural ecology and covers spatial memory (landmarks, route, survey), egocentric and allocentric orientation, signal detection and cognitive load, and choice and priming.</p></div>
+      <div class="card"><div class="y">Behaviour-aware assistance</div><h4>Never Walk Alone</h4><p>Interaction research exploring intent recognition in mobile assistants, analyzing real-time motion and context cues (CoreMotion) to distinguish confident movement from hesitation and dynamically adapt assistance.</p></div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Research and tooling</div><h2 class="disp">Guides,<br>research,<br>and boards</h2></div><p>These sit alongside the builds: interactive guides, research collections, and review systems. Behavioural ecology is one of my interests, and here it shows up as a way of studying models in the field.</p></div>
+
+    <div class="cards">
+      <div class="card"><div class="y">2026</div><h4>Concept Field Guides</h4><p>A shelf of single-page, playable walk-throughs of books and research, including Bridle, Lakoff, trust in AI, wayfinding, and audio salience. "In the Field with AI" studies model behavior the way an ethologist would. 161 commits.</p><div class="lk"><a href="#research">concept-field-guides</a></div></div>
+      <div class="card"><div class="y">May 2026</div><h4>Trust in AI: The Missing Framework</h4><p>A five-dimensional framework for trust in AI, presented as a slide deck.</p><div class="lk"><a href="#research">trust-in-ai-the-missing-framework</a></div></div>
+      <div class="card"><div class="y">Jun 2026</div><h4>Wellbeing in Text</h4><p>A collection of 74 papers across 9 topic areas on computational linguistics and mental-health AI. A hierarchical multi-agent pipeline read them, with team-level and lab-level syntheses.</p><div class="lk"><a href="#research">wellbeing-in-text</a></div></div>
+      <div class="card"><div class="y">Oct 2026</div><h4>How AI Remembers</h4><p>An interactive guide to how associative memory works in AI systems.</p><div class="lk"><a href="#research">associative-memory-guide</a></div></div>
+      <div class="card"><div class="y">Jul 2026</div><h4>Sharks and Frontier Models</h4><p>A shark-science quiz with three mini-games and a ten-concept companion guide that links shark biology to ideas from frontier AI, like distillation and attribution. It's biomimicry used as a way to teach.</p><div class="lk"><a href="#research">sharks-and-frontier-models</a></div></div>
+      <div class="card"><div class="y">2025</div><h4>Paper discovery tools</h4><p>Python tools that find, score, and organize academic papers from ArXiv, CrossRef, Google Scholar, Semantic Scholar, and ScienceDirect, with a citation database and a topic classifier.</p><div class="lk"><a href="#research">WOC-paper-discovery</a></div></div>
+    </div>
+
+    <div class="sub-head">Boards, skills, and process</div>
+    <div class="cards">
+      <div class="card"><div class="y">May 2026 &ndash; ongoing</div><h4>Research Advisory Board</h4><p>A structured Research Advisory Board published as a web portal, incorporating weekly literature reviews, editorial audits, and research governance. 71 commits.</p><div class="lk"><a href="#research">advisory-board</a></div></div>
+      <div class="card"><div class="y">Sep 2026</div><h4>Development Review Team</h4><p>A software engineering peer-review framework for iOS and watchOS, built on game-development habits: stutter-free core loops, offline-first reliability, and physical hardware verification.</p><div class="lk"><a href="#research">development-review-team</a></div></div>
+      <div class="card"><div class="y">Jun &ndash; Aug 2026</div><h4>Skills and marketplace</h4><p>A personal skills collection, a usage-history audit skill, the playbook for building concept field guides, and a curated library of Claude Code skills and workflow extensions.</p><div class="lk"><a href="#research">agent-skills</a> &middot; <a href="#research">claude-code-marketplace</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="wrap reveal">
+    <div class="sec-head"><div><div class="kicker">Experience</div><h2 class="disp">Where I<br>started</h2></div><p>I started in community and QA at a game-engine company, co-founded a games studio, and now prototype at Apple. The maps and positioning work has led to patents.</p></div>
+
+    <div class="xp">
+      <div><div class="when">Jun 2019 &ndash; Present</div><div class="co">Apple</div></div>
+      <div>
+        <h3>Designer / Prototyper / Model Behaviourist</h3>
+        <p>I manage complicated prototype projects and set up the tracking for progress, resources, and milestones. I use biomimicry in human-centered design work, and I act as the link between design, engineering, and incubation teams.</p>
+        <p>I built a framework for analyzing AI model behavior through prompt engineering and response-pattern classification, tracking key attributes across model versions and adapter configurations. I documented model drift, tested whether data augmentation worked, and found demographic effects in generated images.</p>
+      </div>
+    </div>
+    <div class="xp">
+      <div><div class="when">2012 &ndash; May 2020</div><div class="co">KiniFiGames / BackBeach Games</div></div>
+      <div>
+        <h3>Co-founder</h3>
+        <p>I designed and built games and interactive experiences from scratch, including Project4, a retro shoot-'em-up with gameplay systems inspired by cognitive control. I ran a community of indie developers, gave them at-cost expo space at major gaming conventions, and represented women in games on industry panels.</p>
+      </div>
+    </div>
+    <div class="xp">
+      <div><div class="when">Sep 2015 &ndash; May 2018</div><div class="co">Unity Technologies</div></div>
+      <div>
+        <h3>Community Lead, QA, Dev Advocate</h3>
+        <p>I moved from Community Manager to Software Test Engineer to Developer Advocate. As Developer Advocate I took new engine features on the road to outside developers, used internal builds early and sent back feedback, and carried developers' needs to the internal teams.</p>
+        <p>I led QA workflows, coordinated across teams, put structured testing in place, and kept pre-release technology confidential.</p>
+      </div>
+    </div>
+
+    <div class="sub-head" style="margin-top:56px">Patents and applications</div>
+    <div class="kicker" style="margin-top:8px">User interfaces and map presentation</div>
+    <div class="cards" style="margin-bottom:32px">
+      <div class="card"><div class="y">Patent &middot; No. 12281912</div><h4>User Interfaces for Maps and Navigation</h4><p>Application layouts and visual configurations for showing live routing updates and map features on a screen.</p></div>
+      <div class="card"><div class="y">Application &middot; No. 20250164266</div><h4>Grouping Maneuvers for Display in a Navigation Presentation</h4><p>Software logic that groups complex upcoming route segments and street maneuvers into simpler, stacked notification blocks for drivers and walkers.</p></div>
+      <div class="card"><div class="y">Patent &middot; No. 11768083</div><h4>User Interfaces for Providing Navigation Directions</h4><p>Dynamic canvas scaling and graphical overlays for turn-by-turn directional prompts.</p></div>
+    </div>
+    <div class="kicker">Tracking and positioning</div>
+    <div class="cards" style="margin-bottom:8px">
+      <div class="card"><div class="y">Application &middot; No. 20240402211</div><h4>Location Measurement Techniques</h4><p>Lets a mobile device work out position adjustments relative to past location fixes by running wireless ranging sessions alongside on-device inertial motion tracking.</p></div>
+      <div class="card"><div class="y">European application &middot; EP4762325A1</div><h4>Systems and Methods for Presenting Information</h4><p>How real-time telemetry and positioning parameters are visualized across hardware platforms.</p></div>
+    </div>
+
+    <div class="lists">
+      <div>
+        <h5>Publications and talks</h5>
+        <ul>
+          <li>Accessibility &amp; Game Difficulty By Design <span>2018</span></li>
+          <li>Collaborate &ndash; Keeping the user safe <span>2017</span></li>
+          <li>Random Generation and Feedback During Early Development <span>2014</span></li>
+          <li>Bug Squashing Best Practices <span>Technical guide</span></li>
+          <li>Collaborate User Guide <span>Technical guide</span></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Interests</h5>
+        <div class="int">
+          <span class="pill">Human affect in frontier models</span><span class="pill">Behavioural ecology</span><span class="pill">Interaction behaviour &amp; cognition</span><span class="pill">Augmented reality</span><span class="pill">Sense of place</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <div class="kicker">Contact</div>
+    <h2 class="disp">Let's <span>talk.</span></h2>
+    <p class="statement">I'm interested in chatting with you about what you're working on.</p>
+    <div class="links">
+      <a class="primary" href="mailto:holliebuckets@gmail.com">holliebuckets@gmail.com</a>
+      <a href="https://github.com/holliebuckets">github.com/holliebuckets</a>
+    </div>
+    <p class="signoff">&mdash; holliebuckets</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>Hollie Buckets &middot; Portfolio 2026</span><span>Designed &amp; Prototyped by Hollie Buckets</span></div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
